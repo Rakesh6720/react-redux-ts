@@ -1,4 +1,5 @@
 import { Action } from "redux";
+import { RootState } from "./store";
 
 interface RecorderState {
   dateStart: string;
@@ -15,6 +16,11 @@ type StopAction = Action<typeof STOP>;
 export const start = (): StartAction => ({
   type: START,
 });
+
+// selector function
+export const selectRecorderState = (rootState: RootState) => rootState.recorder;
+export const selectDateStart = (rootState: RootState) =>
+  selectRecorderState(rootState).dateStart;
 
 export const stop = (): StopAction => ({
   type: STOP,
